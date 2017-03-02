@@ -107,8 +107,8 @@
   - 强制打补丁
 	    
     强制打补丁,用于补丁包文件冲突的情况,后加入的补丁包要基于前补丁包检出修改分支,再强制打补丁上去
-    项目运维人员登录对应服务器,运行patch.php文件,传两个参,方法forceinstall,以及对应补丁分支名,例:
+    项目运维人员登录对应服务器,运行patch.php文件,传三个参,方法install,-f,以及对应补丁分支名,例:
 		
     ```
-   	php /patch/patch.php forceinstall v1.5.2-fixbug-recommendlist-stick
+   	php /patch/patch.php install -f v1.5.2-fixbug-recommendlist-stick
    	```

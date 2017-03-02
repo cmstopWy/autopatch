@@ -1,8 +1,8 @@
 <?php
 //简单验证,参数个数及允许的操作
-$allowAction = ['create','put','get','install','uninstall','forceinstall'];
+$allowAction = ['create','put','get','install','uninstall'];
 $params      = $argv;
-if(count($params) != 3){
+if(count($params) != 3 && count($params) != 4){
 	echo "参数个数不正确\n";exit;
 }
 if(!in_array($params[1],$allowAction)){
@@ -106,7 +106,7 @@ if($params[1] == 'create'){
         echo "补丁包已存在,无需下载\n";exit;
     }
     shell_exec("sudo wget -P ".$patchDir."/".$tagBig." '".$file_url."'");
-}else if($params[1] == 'install'){
+}else if($params[1] == 'install' && $params[2] != '-f'){
     if(!file_exists($patchDir)){
         echo "补丁包目录不存在,请先执行补丁下载操作\n";exit;
     }
@@ -233,7 +233,9 @@ if($params[1] == 'create'){
     }else{
         echo "补丁回滚失败,对应补丁备份文件不存在\n";exit;
     }
-}else if($params[1] == 'forceinstall'){
+}else if($params[1] == 'install' && $params[2] == '-f'){
+    //修改forceinstall为install -f,将$params[3]赋值给$params[2]
+    $params[2] = $params[3];
     if(!file_exists($patchDir)){
         echo "补丁包目录不存在,请先执行补丁下载操作\n";exit;
     }
