@@ -140,7 +140,7 @@ if($params[1] == 'create'){
                     echo $patchfile[$v][count($patchfile[$v]) - 1]."\n";
                 }
             }
-            echo "\n基于冲突文件所在分支创建新补丁分支,下载新分支补丁包后,使用forceinstall安装对应分支\n";
+            echo "\n基于冲突文件所在分支创建新补丁分支,下载新分支补丁包后,使用install -f安装对应分支\n";
             exit;
         }
     }
@@ -236,6 +236,12 @@ if($params[1] == 'create'){
 }else if($params[1] == 'install' && $params[2] == '-f'){
     //修改forceinstall为install -f,将$params[3]赋值给$params[2]
     $params[2] = $params[3];
+    //获取分支tag
+    $tagInArr   = explode('-',$params[2]);
+    $tag        = $tagInArr[0];
+    //获取tag对应大版本
+    $tagArr     = explode('.',$tag);
+    $tagBig     = implode('.',[$tagArr[0],$tagArr[1],$tagArr[2]]);
     if(!file_exists($patchDir)){
         echo "补丁包目录不存在,请先执行补丁下载操作\n";exit;
     }
