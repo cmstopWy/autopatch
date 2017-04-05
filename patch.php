@@ -17,12 +17,14 @@ $signkey    = 'Cmstop2016';//请求上传接口时的简单验证
 $patchDir   = '/data/www/cloud-patch/patch';//补丁目录
 $bakDir     = '/data/www/cloud-patch/source_bak';//备份目录
 $codeDir    = '/data/www/Cloud';//项目媒体云代码目录
-//获取分支tag
-$tagInArr   = explode('-',$params[2]);
-$tag        = $tagInArr[0];
-//获取tag对应大版本
-$tagArr     = explode('.',$tag);
-$tagBig     = implode('.',[$tagArr[0],$tagArr[1],$tagArr[2]]);
+if($params[1] != 'install' || $params[2] != '-f'){
+    //获取分支tag
+    $tagInArr   = explode('-',$params[2]);
+    $tag        = $tagInArr[0];
+    //获取tag对应大版本
+    $tagArr     = explode('.',$tag);
+    $tagBig     = implode('.',[$tagArr[0],$tagArr[1],$tagArr[2]]);
+}
 if($params[1] == 'create'){
     chdir($cmstopCode);
     shell_exec("sudo git fetch origin");
