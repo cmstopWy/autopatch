@@ -32,10 +32,10 @@
 
   - 创建补丁
 
-    开发或测试人员登录对应服务器,运行patch.php文件,传两个参,方法create,以及对应补丁分支名,例:
+    开发或测试人员登录对应服务器,运行patch.php文件,传三个参,方法create,以及对应补丁分支名和需要对比的分支,例:
     
     ```
-    php /patch/patch.php create v1.5.2-fixbug-recommendlist-stick
+    php /patch/patch.php create v1.5.2-fixbug-recommendlist-stick v1.5.2
     ```
     
     生成的补丁包临时存放在/patch目录下,例:/patch/v1.5.2-fixbug-recommendlist-stick.tar.gz
