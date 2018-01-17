@@ -26,10 +26,13 @@ if($params[1] != 'install' || $params[2] != '-f'){
     $tagBig     = implode('.',[$tagArr[0],$tagArr[1],$tagArr[2]]);
 }
 if($params[1] == 'create'){
+    if(!isset($params[2]) || !isset($params[3])){
+	echo "create 操作需要 输入代码分支 和 对比的目标分支两个参数\n";exit;
+    }
     chdir($cmstopCode);
     shell_exec("sudo git fetch origin");
     shell_exec("sudo git checkout -b ".$params[2]." origin/".$params[2]);
-    $return = shell_exec("sudo git diff ".$params[2]." ".$tag." --name-only");
+    $return = shell_exec("sudo git diff "."origin/".$params[3]." --name-only");
     $fileArr = explode("\n",$return);
     $dirname = $params[2];
     $tarname = $dirname.".tar.gz";
