@@ -9,7 +9,7 @@
   1. 登录对应服务器,服务器需安装git和php,并且能访问到代码仓库,创建目录/patch    
     
     ```
-    mkdir -p /patch test
+    mkdir -p /patch
     
     ```
 
