@@ -26,8 +26,8 @@ if($params[1] != 'install' || $params[2] != '-f'){
     $tagBig     = implode('.',[$tagArr[0],$tagArr[1],$tagArr[2]]);
 }
 if($params[1] == 'create'){
-    if(!isset($params[2]) || !isset($params[3])){
-	echo "create 操作需要 输入代码分支 和 对比的目标分支两个参数\n";exit;
+ 	  if(!isset($params[2]) || !isset($params[3])){
+        echo "create 操作需要 输入代码分支 和 对比的目标分支两个参数\n";exit;
     }
     chdir($cmstopCode);
     shell_exec("sudo git fetch origin");
